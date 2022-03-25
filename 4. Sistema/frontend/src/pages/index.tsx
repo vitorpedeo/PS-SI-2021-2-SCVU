@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 function Home() {
   return (
@@ -11,7 +11,7 @@ function Home() {
 
       <h1>Desapega</h1>
     </>
-  )
+  );
 }
 
-export default Home
+export default Home;
