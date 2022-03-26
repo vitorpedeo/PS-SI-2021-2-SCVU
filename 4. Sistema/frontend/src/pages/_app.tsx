@@ -2,8 +2,8 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'styled-components';
 
-import { theme } from '../styles/theme';
-import { GlobalStyle } from '../styles/global';
+import { theme } from '@/styles/theme';
+import { GlobalStyle } from '@/styles/global';
 
 import '@fontsource/archivo/400.css';
 import '@fontsource/archivo/500.css';
