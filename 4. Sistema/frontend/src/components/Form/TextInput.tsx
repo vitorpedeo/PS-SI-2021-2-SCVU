@@ -1,19 +1,43 @@
-import { InputHTMLAttributes } from 'react';
+import {
+  InputHTMLAttributes,
+  ForwardRefRenderFunction,
+  forwardRef,
+} from 'react';
+import { FieldError } from 'react-hook-form';
 
-import { Box, Input, Text } from '@/components';
+import { Box, Input, Text } from '../Base';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+  name: string;
   label: string;
+  error?: FieldError;
 }
 
-export function TextInput({ label, ...rest }: TextInputProps) {
+const TextInputBase: ForwardRefRenderFunction<
+  HTMLInputElement,
+  TextInputProps
+> = ({ name, label, error = undefined, ...rest }, ref) => {
   return (
     <Box width="100%">
-      <Text as="label" fontSize="1rem" fontWeight="bold">
+      <Text as="label" htmlFor={name} fontSize="1rem" fontWeight="bold">
         {label}
       </Text>
 
-      <Input mt="0.5rem" {...rest} />
+      <Input
+        ref={ref}
+        id={name}
+        name={name}
+        mt="0.5rem"
+        borderColor={error ? '#ef233c' : 'mid-light'}
+        {...rest}
+      />
+      {!!error && (
+        <Text as="small" color="#ef233c">
+          {error.message}
+        </Text>
+      )}
     </Box>
   );
-}
+};
+
+export const TextInput = forwardRef(TextInputBase);

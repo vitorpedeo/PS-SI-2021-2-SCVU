@@ -29,6 +29,7 @@
     "react/require-default-props": "off",
     "import/prefer-default-export": "off",
     "react/no-unused-prop-types": "off",
+    "react/function-component-definition": "off",
     "no-unused-vars": ["error", { "args": "none" }],
     "jsx-a11y/anchor-is-valid": [
       "error",
