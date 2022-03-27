@@ -3,12 +3,14 @@ import {
   border,
   color,
   compose,
+  flexbox,
   layout,
   shadow,
   space,
   typography,
   BorderProps,
   ColorProps,
+  FlexboxProps,
   LayoutProps,
   ShadowProps,
   SpaceProps,
@@ -17,6 +19,7 @@ import {
 
 type ButtonProps = BorderProps &
   ColorProps &
+  FlexboxProps &
   LayoutProps &
   ShadowProps &
   SpaceProps &
@@ -41,5 +44,5 @@ export const Button = styled('button')<ButtonProps>(
       boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${theme.colors.blue}`,
     },
   }),
-  compose(border, color, layout, shadow, space, typography),
+  compose(border, color, flexbox, layout, shadow, space, typography),
 );

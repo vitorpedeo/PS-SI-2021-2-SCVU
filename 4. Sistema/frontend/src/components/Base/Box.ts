@@ -6,6 +6,7 @@ import {
   flexbox,
   grid,
   layout,
+  position,
   shadow,
   space,
   typography,
@@ -14,6 +15,7 @@ import {
   FlexboxProps,
   GridProps,
   LayoutProps,
+  PositionProps,
   ShadowProps,
   SpaceProps,
   TypographyProps,
@@ -24,10 +26,21 @@ type BoxProps = BorderProps &
   FlexboxProps &
   GridProps &
   LayoutProps &
+  PositionProps &
   ShadowProps &
   SpaceProps &
   TypographyProps;
 
 export const Box = styled('div')<BoxProps>(
-  compose(border, color, flexbox, grid, layout, shadow, space, typography),
+  compose(
+    border,
+    color,
+    flexbox,
+    grid,
+    position,
+    layout,
+    shadow,
+    space,
+    typography,
+  ),
 );
