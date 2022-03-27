@@ -3,6 +3,7 @@ import { DefaultTheme } from 'styled-components';
 const breakpoints = ['0em', '30em', '48em', '62em', '80em', '96em'];
 
 const colors = {
+  white: '#fff',
   blue: '#2968C8',
   dark: '#323232',
   'mid-dark': '#4A4A4A',
