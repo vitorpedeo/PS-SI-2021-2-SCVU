@@ -20,4 +20,8 @@ export const GlobalStyle = createGlobalStyle`
   button {
     font-family: 'Archivo', sans-serif;
   }
+
+  .szh-menu-container {
+    position: absolute;
+  }
 `;

@@ -2,16 +2,22 @@ import styled from 'styled-components';
 import {
   compose,
   color,
+  flexbox,
   layout,
   space,
   typography,
   ColorProps,
+  FlexboxProps,
   LayoutProps,
   SpaceProps,
   TypographyProps,
 } from 'styled-system';
 
-type TextProps = ColorProps & LayoutProps & SpaceProps & TypographyProps;
+type TextProps = ColorProps &
+  FlexboxProps &
+  LayoutProps &
+  SpaceProps &
+  TypographyProps;
 
 export const Link = styled('a')<TextProps>(
   ({ theme }) => ({
@@ -25,5 +31,5 @@ export const Link = styled('a')<TextProps>(
       boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${theme.colors.blue}`,
     },
   }),
-  compose(color, layout, space, typography),
+  compose(color, flexbox, layout, space, typography),
 );
