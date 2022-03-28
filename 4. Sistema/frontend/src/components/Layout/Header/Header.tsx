@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { Menu, MenuItem } from '@szhsin/react-menu';
 import { IoChevronDown, IoPerson } from 'react-icons/io5';
 
@@ -6,6 +7,8 @@ import { Box, Button, Link, Text } from '@/components/Base';
 import { MobileSidebar } from './MobileSidebar';
 
 export function Header() {
+  const { pathname, push } = useRouter();
+
   return (
     <Box as="header" width="100%" bg="white">
       <Box
@@ -52,7 +55,12 @@ export function Header() {
               Minha Conta
             </Link>
           </NextLink>
-          <Button px="1.125rem" height="42px">
+          <Button
+            px="1.125rem"
+            height="42px"
+            onClick={e => push('/item/new')}
+            disabled={pathname === '/item/new'}
+          >
             Anunciar
           </Button>
         </Box>

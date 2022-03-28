@@ -35,13 +35,17 @@ export const Button = styled('button')<ButtonProps>(
     fontWeight: theme.fontWeights.bold,
     cursor: 'pointer',
     transition: 'filter 0.2s',
-    '&:hover': {
+    '&:not(:disabled):hover': {
       filter: 'brightness(0.9)',
     },
     '&:focus': {
       outlineColor: 'transparent',
       outlineStyle: 'solid',
       boxShadow: `0 0 0 2px #fff, 0 0 0 4px ${theme.colors.blue}`,
+    },
+    '&:disabled': {
+      background: theme.colors['mid-light'],
+      cursor: 'default',
     },
   }),
   compose(border, color, flexbox, layout, shadow, space, typography),
