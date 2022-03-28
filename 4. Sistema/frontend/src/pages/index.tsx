@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import NextLink from 'next/link';
 
-import { Box, Header } from '@/components';
+import { FilterSection, SuggestionsSection } from '@/features/home';
+import { Box, Header, Link } from '@/components';
 
 function Home() {
   return (
@@ -12,7 +14,17 @@ function Home() {
       <Box as="main" width="100%" minHeight="100vh" bg="light">
         <Header />
 
-        <h1>Desapega</h1>
+        <FilterSection />
+
+        <SuggestionsSection />
+
+        <Box mx="auto" pb="3.5rem" px="1.5rem" maxWidth="1160px" width="100%">
+          <NextLink href="/" passHref>
+            <Link textAlign="right" display="block">
+              Preciso de ajuda
+            </Link>
+          </NextLink>
+        </Box>
       </Box>
     </>
   );
