@@ -3,3 +3,7 @@ export type NewItemFormFields = {
   price: string;
   description: string;
 };
+
+export type FreightFormFields = {
+  zip: string;
+};

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 import { Box, Button, Text } from '@/components';
 
@@ -9,6 +10,8 @@ interface SuggestionCardProps {
 }
 
 export function SuggestionCard({ imgName, title, price }: SuggestionCardProps) {
+  const { push } = useRouter();
+
   const formattedPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
@@ -45,7 +48,7 @@ export function SuggestionCard({ imgName, title, price }: SuggestionCardProps) {
         {formattedPrice}
       </Text>
 
-      <Button py="0.75rem" width="100%">
+      <Button py="0.75rem" width="100%" onClick={e => push('/item/details')}>
         Ver mais detalhes
       </Button>
     </Box>
