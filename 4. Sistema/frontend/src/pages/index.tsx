@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import NextLink from 'next/link';
 
+import { withSSRProtection } from '@/features/auth';
+
 import { FilterSection, SuggestionsSection } from '@/features/home';
 import { Box, Header, Link } from '@/components';
 
@@ -29,5 +31,7 @@ function Home() {
     </>
   );
 }
+
+export const getServerSideProps = withSSRProtection();
 
 export default Home;

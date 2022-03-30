@@ -1,13 +1,23 @@
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { signOut } from 'next-auth/react';
 import { Menu, MenuItem } from '@szhsin/react-menu';
 import { IoChevronDown, IoPerson } from 'react-icons/io5';
 
 import { Box, Button, Link, Text } from '@/components/Base';
 import { MobileSidebar } from './MobileSidebar';
+import { successToast } from '../Toast';
 
 export function Header() {
   const { pathname, push } = useRouter();
+
+  function handleLogout() {
+    signOut({ redirect: false });
+
+    successToast('Até mais!');
+
+    push('/auth/signin');
+  }
 
   return (
     <Box as="header" width="100%" bg="white">
@@ -82,7 +92,7 @@ export function Header() {
             transition
             arrow
           >
-            <MenuItem>
+            <MenuItem onClick={handleLogout}>
               <Text color="blue" fontSize="1.125rem" fontWeight="medium">
                 Sair
               </Text>

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { BiArrowBack } from 'react-icons/bi';
 import { IoChatbubble, IoStar, IoStarHalf } from 'react-icons/io5';
 
+import { withSSRProtection } from '@/features/auth';
 import { FreightForm } from '@/features/item';
 import { Box, Button, Header, Heading, Text } from '@/components';
 
@@ -153,5 +154,7 @@ function ItemDetails() {
     </>
   );
 }
+
+export const getServerSideProps = withSSRProtection();
 
 export default ItemDetails;

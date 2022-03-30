@@ -1,5 +1,7 @@
 import type { AppProps } from 'next/app';
+import { SessionProvider } from 'next-auth/react';
 import Head from 'next/head';
+import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 
 import { theme } from '@/styles/theme';
@@ -12,17 +14,24 @@ import '@fontsource/archivo/700.css';
 import '@szhsin/react-menu/dist/index.css';
 import '@szhsin/react-menu/dist/transitions/slide.css';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-      </Head>
+    <SessionProvider session={pageProps.session}>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+          <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+        </Head>
 
-      <GlobalStyle />
-      <Component {...pageProps} />
-    </ThemeProvider>
+        <GlobalStyle />
+
+        <ToastContainer />
+
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </SessionProvider>
   );
 }
 

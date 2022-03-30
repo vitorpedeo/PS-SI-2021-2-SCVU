@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { BiArrowBack } from 'react-icons/bi';
 
+import { withSSRProtection } from '@/features/auth';
 import { NewItemForm } from '@/features/item';
 import { Box, Button, Header, Heading } from '@/components';
 
@@ -49,5 +50,7 @@ function NewItem() {
     </>
   );
 }
+
+export const getServerSideProps = withSSRProtection();
 
 export default NewItem;

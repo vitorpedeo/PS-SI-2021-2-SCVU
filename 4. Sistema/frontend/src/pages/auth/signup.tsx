@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { SignUpForm } from '@/features/auth';
+import { SignUpForm, withSSRAuthenticated } from '@/features/auth';
 
 import { Box } from '@/components';
 
@@ -25,5 +25,7 @@ function SignUp() {
     </>
   );
 }
+
+export const getServerSideProps = withSSRAuthenticated();
 
 export default SignUp;
