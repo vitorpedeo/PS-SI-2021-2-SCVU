@@ -16,28 +16,32 @@ export function SuggestionsSection() {
       >
         <Heading>
           <SuggestionCard
-            imgName="carro.jpg"
+            name="carro"
+            imgPath="carro.jpg"
             title="Fiat Argo 1.0 2021"
             price={55000}
           />
         </Heading>
         <Heading>
           <SuggestionCard
-            imgName="chuteira.jpg"
+            name="chuteira"
+            imgPath="chuteira.jpg"
             title="Nike Mercurial Vapor"
             price={439.99}
           />
         </Heading>
         <Heading>
           <SuggestionCard
-            imgName="abajur.jpg"
+            name="abajur"
+            imgPath="abajur.jpg"
             title="Abajur Stella"
             price={80}
           />
         </Heading>
         <Heading>
           <SuggestionCard
-            imgName="camisa_social.png"
+            name="camisa"
+            imgPath="camisa_social.png"
             title="Camisa Social Masc."
             price={75}
           />

@@ -4,12 +4,18 @@ import { useRouter } from 'next/router';
 import { Box, Button, Text } from '@/components';
 
 interface SuggestionCardProps {
-  imgName: string;
+  name: string;
+  imgPath: string;
   title: string;
   price: number;
 }
 
-export function SuggestionCard({ imgName, title, price }: SuggestionCardProps) {
+export function SuggestionCard({
+  name,
+  imgPath,
+  title,
+  price,
+}: SuggestionCardProps) {
   const { push } = useRouter();
 
   const formattedPrice = new Intl.NumberFormat('pt-BR', {
@@ -33,7 +39,7 @@ export function SuggestionCard({ imgName, title, price }: SuggestionCardProps) {
         position="relative"
       >
         <Image
-          src={`/images/${imgName}`}
+          src={`/images/${imgPath}`}
           alt="Imagem do Anúncio"
           layout="fill"
           objectFit="cover"
@@ -48,7 +54,11 @@ export function SuggestionCard({ imgName, title, price }: SuggestionCardProps) {
         {formattedPrice}
       </Text>
 
-      <Button py="0.75rem" width="100%" onClick={e => push('/item/details')}>
+      <Button
+        py="0.75rem"
+        width="100%"
+        onClick={e => push(`/item/details?item=${name}`)}
+      >
         Ver mais detalhes
       </Button>
     </Box>

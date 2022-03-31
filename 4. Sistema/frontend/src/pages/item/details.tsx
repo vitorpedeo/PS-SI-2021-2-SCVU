@@ -8,8 +8,19 @@ import { withSSRProtection } from '@/features/auth';
 import { FreightForm } from '@/features/item';
 import { Box, Button, Header, Heading, Text } from '@/components';
 
-function ItemDetails() {
+interface ItemDetailsProps {
+  imgPath: string;
+  title: string;
+  price: number;
+}
+
+function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
   const { back } = useRouter();
+
+  const formattedPrice = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(price);
 
   return (
     <>
@@ -55,7 +66,7 @@ function ItemDetails() {
               position="relative"
             >
               <Image
-                src="/images/carro.jpg"
+                src={`/images/${imgPath}`}
                 alt="Imagem do Anúncio"
                 layout="fill"
                 objectFit="cover"
@@ -64,7 +75,7 @@ function ItemDetails() {
 
             <Box width="100%">
               <Heading fontSize="2rem" fontWeight="normal">
-                Fiat Argo 1.0 2021
+                {title}
               </Heading>
 
               <Box
@@ -92,7 +103,7 @@ function ItemDetails() {
               </Box>
 
               <Text color="dark" fontSize="2rem" fontWeight="bold">
-                R$ 55.000,00
+                {formattedPrice}
               </Text>
 
               <FreightForm />
@@ -155,6 +166,47 @@ function ItemDetails() {
   );
 }
 
-export const getServerSideProps = withSSRProtection();
+export const getServerSideProps = withSSRProtection(async ctx => {
+  const { item } = ctx.query;
+
+  let props = {};
+
+  switch (item) {
+    case 'carro':
+      props = {
+        imgPath: 'carro.jpg',
+        title: 'Fiat Argo 1.0 2021',
+        price: 55000,
+      };
+      break;
+    case 'chuteira':
+      props = {
+        imgPath: 'chuteira.jpg',
+        title: 'Nike Mercurial Vapor',
+        price: 439.99,
+      };
+      break;
+    case 'abajur':
+      props = {
+        imgPath: 'abajur.jpg',
+        title: 'Abajur Stella',
+        price: 80,
+      };
+      break;
+    case 'camisa':
+      props = {
+        imgPath: 'camisa_social.png',
+        title: 'Camisa Social Masc.',
+        price: 75,
+      };
+      break;
+    default:
+      break;
+  }
+
+  return {
+    props,
+  };
+});
 
 export default ItemDetails;
