@@ -1,5 +1,7 @@
 import { useForm } from 'react-hook-form';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box, Button, TextInput } from '@/components';
 
 import { FreightFormFields } from '../types';
@@ -10,6 +12,8 @@ export function FreightForm() {
       zip: '',
     },
   });
+
+  const translate = useTranslation();
 
   function onSubmit(values: FreightFormFields) {
     console.log(values);
@@ -25,8 +29,8 @@ export function FreightForm() {
       alignItems="flex-end"
     >
       <TextInput
-        label="Calcular frete e prazo"
-        placeholder="Insira o CEP"
+        label={translate('freightValueLabel')}
+        placeholder={translate('freightValuePlaceholder')}
         {...register('zip')}
       />
       <Button ml="1.125rem" px="1rem" height="3rem">

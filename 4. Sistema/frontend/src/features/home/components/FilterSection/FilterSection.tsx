@@ -7,11 +7,15 @@ import {
   IoWoman,
 } from 'react-icons/io5';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box } from '@/components';
 import { CategoryItem } from './CategoryItem';
 import { SearchForm } from './SearchForm';
 
 export function FilterSection() {
+  const translate = useTranslation();
+
   return (
     <Box
       as="section"
@@ -35,27 +39,27 @@ export function FilterSection() {
         >
           <CategoryItem
             icon={<IoPhonePortraitOutline color="#323232" size={38} />}
-            title="Eletrônicos"
+            title={translate('electronicsFilter')}
           />
           <CategoryItem
             icon={<IoCarSport color="#323232" size={38} />}
-            title="Auto e Peças"
+            title={translate('autoPartsFilter')}
           />
           <CategoryItem
             icon={<IoFootball color="#323232" size={38} />}
-            title="Esportes"
+            title={translate('sportsFilter')}
           />
           <CategoryItem
             icon={<IoWoman color="#323232" size={38} />}
-            title="Moda"
+            title={translate('fashionFilter')}
           />
           <CategoryItem
             icon={<IoHome color="#323232" size={38} />}
-            title="Imóveis"
+            title={translate('propertiesFilter')}
           />
           <CategoryItem
             icon={<IoBed color="#323232" size={38} />}
-            title="Móveis"
+            title={translate('furnitureFilter')}
           />
         </Box>
       </Box>

@@ -1,14 +1,21 @@
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { SignUpForm, withSSRAuthenticated } from '@/features/auth';
 
 import { Box } from '@/components';
 
 function SignUp() {
+  const { locale } = useRouter();
+
+  const tabTitle = `Desapega | ${
+    locale === 'pt-BR' ? 'Cadastrar Conta' : 'Register Account'
+  }`;
+
   return (
     <>
       <Head>
-        <title>Desapega | Cadastrar Conta</title>
+        <title>{tabTitle}</title>
       </Head>
 
       <Box

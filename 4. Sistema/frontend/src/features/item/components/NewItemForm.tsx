@@ -3,6 +3,8 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 
+import { useTranslation } from '@/features/intl';
+
 import {
   Box,
   Button,
@@ -29,14 +31,21 @@ export function NewItemForm() {
     resolver: yupResolver(newItemSchema),
   });
 
-  const { push } = useRouter();
+  const { locale, push } = useRouter();
+
+  const translate = useTranslation();
 
   const [image, setImage] = useState<File | null>(null);
 
   function onSubmit(values: NewItemFormFields) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        successToast('Item cadastrado com sucesso!');
+        const newItemMessage =
+          locale === 'pt-BR'
+            ? 'Item cadastrado com sucesso!'
+            : 'Advertisement created successfully!';
+
+        successToast(newItemMessage);
 
         push('/');
 
@@ -56,7 +65,7 @@ export function NewItemForm() {
 
           <Box width="100%" display="grid" gridGap="1rem">
             <TextInput
-              label="Título"
+              label={translate('formTitleLabel')}
               error={errors.title}
               {...register('title')}
             />
@@ -64,12 +73,12 @@ export function NewItemForm() {
               type="number"
               min="0.00"
               step="0.01"
-              label="Preço"
+              label={translate('formPriceLabel')}
               error={errors.price}
               {...register('price')}
             />
             <TextInput
-              label="Descrição"
+              label={translate('formDescriptionLabel')}
               error={errors.description}
               {...register('description')}
             />
@@ -84,7 +93,7 @@ export function NewItemForm() {
           justifyContent="center"
         >
           <Button type="submit" py="0.875rem" width="75%">
-            Cadastrar anúncio
+            {translate('newItemButtonText')}
           </Button>
         </Box>
       </Box>

@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from 'react';
 import { IoCamera } from 'react-icons/io5';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box, Text } from '../Base';
 
 interface ImageInputProps {
@@ -12,6 +14,8 @@ export function ImageInput({ setImage }: ImageInputProps) {
   const [preview, setPreview] = useState('');
 
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const translate = useTranslation();
 
   function handleImageChange(event: ChangeEvent<HTMLInputElement>) {
     const imgSrc = event.target.files ? event.target.files[0] : null;
@@ -37,7 +41,7 @@ export function ImageInput({ setImage }: ImageInputProps) {
   return (
     <Box width="100%">
       <Text as="label" htmlFor="image" fontSize="1rem" fontWeight="bold">
-        Imagem
+        {translate('formImageLabel')}
       </Text>
       <Box
         onClick={e => {

@@ -1,9 +1,13 @@
 import Image from 'next/image';
 import { signIn } from 'next-auth/react';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box, Button } from '@/components';
 
 export function GoogleLoginButton() {
+  const translate = useTranslation();
+
   async function handleLogin() {
     signIn('google', { callbackUrl: 'http://localhost:3000' });
   }
@@ -23,7 +27,7 @@ export function GoogleLoginButton() {
       <Box mr="0.5rem" width="26px" height="26px" position="relative">
         <Image src="/google-logo.png" alt="Google Logo" layout="fill" />
       </Box>
-      Entrar com o Google
+      {translate('googleLoginButtonText')}
     </Button>
   );
 }

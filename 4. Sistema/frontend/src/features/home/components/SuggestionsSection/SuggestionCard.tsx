@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box, Button, Text } from '@/components';
 
 interface SuggestionCardProps {
@@ -17,6 +19,8 @@ export function SuggestionCard({
   price,
 }: SuggestionCardProps) {
   const { push } = useRouter();
+
+  const translation = useTranslation();
 
   const formattedPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -59,7 +63,7 @@ export function SuggestionCard({
         width="100%"
         onClick={e => push(`/item/details?item=${name}`)}
       >
-        Ver mais detalhes
+        {translation('moreDetailsButton')}
       </Button>
     </Box>
   );

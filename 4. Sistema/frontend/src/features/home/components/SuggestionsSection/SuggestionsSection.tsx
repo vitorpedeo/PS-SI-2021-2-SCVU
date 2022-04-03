@@ -1,11 +1,15 @@
+import { useTranslation } from '@/features/intl';
+
 import { Box, Heading } from '@/components';
 import { SuggestionCard } from './SuggestionCard';
 
 export function SuggestionsSection() {
+  const translation = useTranslation();
+
   return (
     <Box mx="auto" pb="6rem" px="1.5rem" maxWidth="1160px" width="100%">
       <Heading my="2.5rem" fontSize="2rem">
-        Sugestões do dia
+        {translation('suggestionsHeading')}
       </Heading>
 
       <Box

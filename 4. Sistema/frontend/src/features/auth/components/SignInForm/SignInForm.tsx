@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import { signInSchema } from '@/features/auth/schemas';
 import { SignInFormFields } from '@/features/auth/types';
+import { useTranslation } from '@/features/intl';
 
 import {
   Box,
@@ -33,7 +34,9 @@ export function SignInForm() {
     resolver: yupResolver(signInSchema),
   });
 
-  const { push } = useRouter();
+  const { locale, push } = useRouter();
+
+  const translate = useTranslation();
 
   async function onSubmit(values: SignInFormFields) {
     return signIn('credentials', { ...values, redirect: false })
@@ -41,12 +44,20 @@ export function SignInForm() {
         const { error } = res as unknown as { error: string | null };
 
         if (error) {
-          errorToast('E-mail/senha inválido(s)!');
+          const signInErrorMessage =
+            locale === 'pt-BR'
+              ? 'E-mail/senha inválido(s)!'
+              : 'Invalid e-mail/password!';
+
+          errorToast(signInErrorMessage);
 
           return;
         }
 
-        successToast('Seja bem-vindo!');
+        const signInMessage =
+          locale === 'pt-BR' ? 'Seja bem-vindo!' : 'Welcome back!';
+
+        successToast(signInMessage);
 
         push('/');
       })
@@ -73,18 +84,18 @@ export function SignInForm() {
         </Heading>
 
         <Text mb="1.5rem" fontSize="1.25rem" textAlign="center">
-          Acesse sua conta
+          {translate('formSubtitle')}
         </Text>
 
         <Box display="grid" gridGap="1rem">
           <TextInput
-            label="E-mail"
+            label={translate('formEmailLabel')}
             type="email"
             error={errors.email}
             {...register('email')}
           />
           <TextInput
-            label="Senha"
+            label={translate('formPasswordLabel')}
             type="password"
             error={errors.password}
             {...register('password')}
@@ -92,7 +103,7 @@ export function SignInForm() {
         </Box>
 
         <Button type="submit" my="1.5rem" width="100%" height="48px">
-          Entrar
+          {translate('loginButtonText')}
         </Button>
 
         <Box
@@ -103,7 +114,7 @@ export function SignInForm() {
         >
           <Box width="42%" height="1px" bg="#F2F2F2" />
           <Text color="#898989" fontSize="0.875rem">
-            ou
+            {translate('anotherOptionLabel')}
           </Text>
           <Box width="42%" height="1px" bg="#F2F2F2" />
         </Box>
@@ -111,11 +122,11 @@ export function SignInForm() {
         <GoogleLoginButton />
 
         <Text mb="0.5rem" fontSize="1rem" textAlign="center">
-          Não tem uma conta?
+          {translate('noAccountText')}
         </Text>
         <NextLink href="/auth/signup" passHref>
           <Link textAlign="center" display="block">
-            Cadastre-se agora
+            {translate('registerAccountLink')}
           </Link>
         </NextLink>
       </Box>

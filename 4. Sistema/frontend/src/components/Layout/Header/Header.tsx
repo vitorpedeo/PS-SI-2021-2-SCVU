@@ -9,15 +9,19 @@ import { MobileSidebar } from './MobileSidebar';
 import { successToast } from '../Toast';
 
 export function Header() {
-  const { pathname, push } = useRouter();
+  const { locale, pathname, push } = useRouter();
 
   function handleLogout() {
-    signOut({ redirect: false });
+    const signOutMessage = locale === 'pt-BR' ? 'Até mais!' : 'See you later!';
 
-    successToast('Até mais!');
+    successToast(signOutMessage);
+
+    signOut({ redirect: false });
 
     push('/auth/signin');
   }
+
+  const isPortugueseLocale = locale === 'pt-BR';
 
   return (
     <Box as="header" width="100%" bg="white">
@@ -51,7 +55,7 @@ export function Header() {
               display="flex"
               alignItems="center"
             >
-              Compras
+              {isPortugueseLocale ? 'Compras' : 'Purchases'}
             </Link>
           </NextLink>
           <NextLink href="/" passHref>
@@ -62,7 +66,7 @@ export function Header() {
               display="flex"
               alignItems="center"
             >
-              Minha Conta
+              {isPortugueseLocale ? 'Minha Conta' : 'My Account'}
             </Link>
           </NextLink>
           <Button
@@ -71,7 +75,7 @@ export function Header() {
             onClick={e => push('/item/new')}
             disabled={pathname === '/item/new'}
           >
-            Anunciar
+            {isPortugueseLocale ? 'Anunciar' : 'Announce'}
           </Button>
         </Box>
 
@@ -94,7 +98,7 @@ export function Header() {
           >
             <MenuItem onClick={handleLogout}>
               <Text color="blue" fontSize="1.125rem" fontWeight="medium">
-                Sair
+                {isPortugueseLocale ? 'Sair' : 'Logout'}
               </Text>
             </MenuItem>
           </Menu>

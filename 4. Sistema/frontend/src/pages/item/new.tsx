@@ -4,15 +4,23 @@ import { BiArrowBack } from 'react-icons/bi';
 
 import { withSSRProtection } from '@/features/auth';
 import { NewItemForm } from '@/features/item';
+import { useTranslation } from '@/features/intl';
+
 import { Box, Button, Header, Heading } from '@/components';
 
 function NewItem() {
-  const { back } = useRouter();
+  const { back, locale } = useRouter();
+
+  const translate = useTranslation();
+
+  const tabTitle = `Desapega | ${
+    locale === 'pt-BR' ? 'Novo Anúncio' : 'New Advertisement'
+  }`;
 
   return (
     <>
       <Head>
-        <title>Desapega | Novo Anúncio</title>
+        <title>{tabTitle}</title>
       </Head>
 
       <Box as="main" width="100%" minHeight="100vh" bg="light">
@@ -36,11 +44,11 @@ function NewItem() {
               justifyContent="center"
             >
               <BiArrowBack size={24} style={{ marginRight: 6 }} />
-              Voltar
+              {translate('backButtonText')}
             </Button>
 
             <Heading ml="2.5rem" fontSize="3rem">
-              Novo Anúncio
+              {translate('newItemHeading')}
             </Heading>
           </Box>
 

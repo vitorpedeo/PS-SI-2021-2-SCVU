@@ -1,9 +1,13 @@
 import { FormEvent } from 'react';
 import { IoSearch } from 'react-icons/io5';
 
+import { useTranslation } from '@/features/intl';
+
 import { Box, Button, Input } from '@/components';
 
 export function SearchForm() {
+  const translate = useTranslation();
+
   function onSubmit(event: FormEvent) {
     event.preventDefault();
   }
@@ -19,7 +23,7 @@ export function SearchForm() {
       <Input
         id="search"
         name="search"
-        placeholder="O que você deseja buscar?"
+        placeholder={translate('filterItemsPlaceholder')}
         height="60px"
         borderRadius="4px 0 0 4px"
         color="mid-dark"

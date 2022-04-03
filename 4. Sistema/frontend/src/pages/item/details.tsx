@@ -5,7 +5,9 @@ import { BiArrowBack } from 'react-icons/bi';
 import { IoChatbubble, IoStar, IoStarHalf } from 'react-icons/io5';
 
 import { withSSRProtection } from '@/features/auth';
+import { useTranslation } from '@/features/intl';
 import { FreightForm } from '@/features/item';
+
 import { Box, Button, Header, Heading, Text } from '@/components';
 
 interface ItemDetailsProps {
@@ -15,7 +17,13 @@ interface ItemDetailsProps {
 }
 
 function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
-  const { back } = useRouter();
+  const { back, locale } = useRouter();
+
+  const translate = useTranslation();
+
+  const tabTitle = `Desapega | ${
+    locale === 'pt-BR' ? 'Detalhes do Anúncio' : 'Advertisement Details'
+  }`;
 
   const formattedPrice = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
@@ -25,7 +33,7 @@ function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
   return (
     <>
       <Head>
-        <title>Desapega | Detalhes do Anúncio</title>
+        <title>{tabTitle}</title>
       </Head>
 
       <Box as="main" width="100%" minHeight="100vh" bg="light">
@@ -49,7 +57,7 @@ function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
             justifyContent="center"
           >
             <BiArrowBack size={24} style={{ marginRight: 6 }} />
-            Voltar
+            {translate('backButtonText')}
           </Button>
 
           <Box
@@ -98,7 +106,7 @@ function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
                 </Box>
 
                 <Text ml="0.75rem" fontSize="0.75rem">
-                  120 avaliações
+                  120 {translate('ratingsLabel')}
                 </Text>
               </Box>
 
@@ -109,7 +117,7 @@ function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
               <FreightForm />
 
               <Button mt="2.5rem" mb="1rem" py="0.875rem" width="60%">
-                Comprar
+                {translate('buyItemButtonText')}
               </Button>
               <Button
                 py="0.875rem"
@@ -128,7 +136,7 @@ function ItemDetails({ imgPath, title, price }: ItemDetailsProps) {
           </Box>
 
           <Heading mt="4rem" mb="1rem" fontSize="2rem">
-            Descrição do anúncio
+            {translate('descriptionHeading')}
           </Heading>
 
           <Text fontSize="1rem" style={{ lineHeight: '24px' }}>

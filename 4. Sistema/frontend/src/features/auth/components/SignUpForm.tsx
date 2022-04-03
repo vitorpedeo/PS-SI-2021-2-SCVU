@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { signUpSchema } from '@/features/auth/schemas';
 import { SignUpFormFields } from '@/features/auth/types';
+import { useTranslation } from '@/features/intl';
 
 import {
   Box,
@@ -31,12 +32,19 @@ export function SignUpForm() {
     resolver: yupResolver(signUpSchema),
   });
 
-  const { push } = useRouter();
+  const { locale, push } = useRouter();
+
+  const translate = useTranslation();
 
   async function onSubmit(values: SignUpFormFields) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        successToast('Cadastro realizado com sucesso!');
+        const registerMessage =
+          locale === 'pt-BR'
+            ? 'Cadastro realizado com sucesso!'
+            : 'Account created successfully!';
+
+        successToast(registerMessage);
 
         push('/auth/signin');
 
@@ -65,19 +73,23 @@ export function SignUpForm() {
         </Heading>
 
         <Text mb="1.5rem" fontSize="1.25rem" textAlign="center">
-          Crie sua conta
+          {translate('formSubtitle')}
         </Text>
 
         <Box display="grid" gridGap="1rem">
-          <TextInput label="Nome" error={errors.name} {...register('name')} />
           <TextInput
-            label="E-mail"
+            label={translate('formNameLabel')}
+            error={errors.name}
+            {...register('name')}
+          />
+          <TextInput
+            label={translate('formEmailLabel')}
             type="email"
             error={errors.email}
             {...register('email')}
           />
           <TextInput
-            label="Senha"
+            label={translate('formPasswordLabel')}
             type="password"
             error={errors.password}
             {...register('password')}
@@ -85,15 +97,15 @@ export function SignUpForm() {
         </Box>
 
         <Button type="submit" my="1.5rem" width="100%" height="48px">
-          Cadastrar
+          {translate('registerButtonText')}
         </Button>
 
         <Text mb="0.5rem" fontSize="1rem" textAlign="center">
-          Já possui uma conta?
+          {translate('alreadyHaveAccountText')}
         </Text>
         <NextLink href="/auth/signin" passHref>
           <Link textAlign="center" display="block">
-            Entre agora
+            {translate('loginLink')}
           </Link>
         </NextLink>
       </Box>
