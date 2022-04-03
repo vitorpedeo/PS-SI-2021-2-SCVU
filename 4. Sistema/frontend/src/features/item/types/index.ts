@@ -7,3 +7,10 @@ export type NewItemFormFields = {
 export type FreightFormFields = {
   zip: string;
 };
+
+export type FreightFormAPIResponse = {
+  logradouro: string;
+  bairro: string;
+  localidade: string;
+  uf: string;
+};
