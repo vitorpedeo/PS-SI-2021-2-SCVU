@@ -39,29 +39,33 @@ export function SignInForm() {
   const translate = useTranslation();
 
   async function onSubmit(values: SignInFormFields) {
-    return signIn('credentials', { ...values, redirect: false })
-      .then(res => {
-        const { error } = res as unknown as { error: string | null };
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        signIn('credentials', { ...values, redirect: false })
+          .then(res => {
+            const { error } = res as unknown as { error: string | null };
 
-        if (error) {
-          const signInErrorMessage =
-            locale === 'pt-BR'
-              ? 'E-mail/senha inválido(s)!'
-              : 'Invalid e-mail/password!';
+            if (error) {
+              const signInErrorMessage =
+                locale === 'pt-BR'
+                  ? 'E-mail/senha inválido(s)!'
+                  : 'Invalid e-mail/password!';
 
-          errorToast(signInErrorMessage);
+              errorToast(signInErrorMessage);
 
-          return;
-        }
+              return;
+            }
 
-        const signInMessage =
-          locale === 'pt-BR' ? 'Seja bem-vindo!' : 'Welcome back!';
+            const signInMessage =
+              locale === 'pt-BR' ? 'Seja bem-vindo!' : 'Welcome back!';
 
-        successToast(signInMessage);
+            successToast(signInMessage);
 
-        push('/');
-      })
-      .catch(err => console.error(err));
+            push('/');
+          })
+          .catch(err => console.error(err));
+      }, 3000);
+    });
   }
 
   return (

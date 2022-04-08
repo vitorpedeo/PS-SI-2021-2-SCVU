@@ -5,7 +5,6 @@ import { Menu, MenuItem } from '@szhsin/react-menu';
 import { IoChevronDown, IoPerson } from 'react-icons/io5';
 
 import { Box, Button, Link, Text } from '@/components/Base';
-import { MobileSidebar } from './MobileSidebar';
 import { successToast } from '../Toast';
 
 export function Header() {
@@ -103,8 +102,6 @@ export function Header() {
             </MenuItem>
           </Menu>
         </Box>
-
-        <MobileSidebar />
       </Box>
     </Box>
   );

@@ -8,13 +8,7 @@ export default NextAuth({
       name: 'Credentials',
       credentials: {},
       async authorize(credentials, req) {
-        const { email } = credentials as { email: string };
-
-        if (email === 'vitor@gmail.com') {
-          return { id: 1, name: 'Vitor Pereira' };
-        }
-
-        return null;
+        return { id: 1, name: 'Vitor Pereira' };
       },
     }),
     GoogleProvider({
