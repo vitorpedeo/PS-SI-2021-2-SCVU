@@ -14,7 +14,7 @@ public class Category {
     @Column(name = "name", nullable = false, length = 20)
     private String id;
 
-    @Column(name = "image", nullable = false, length = 100)
+    @Column(name = "image", nullable = false, length = 300)
     private String image;
 
     @OneToMany(mappedBy = "category")

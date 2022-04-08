@@ -1,10 +1,13 @@
 package br.com.ufg.desapega.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "item")
+@Data
 public class Item {
     @Id
     @Column(name = "id", nullable = false)
@@ -30,7 +33,7 @@ public class Item {
     @Column(name = "description", nullable = false, length = 400)
     private String description;
 
-    @Column(name = "image", nullable = false, length = 100)
+    @Column(name = "image", nullable = false, length = 300)
     private String image;
 
 }

@@ -1,9 +1,12 @@
 package br.com.ufg.desapega.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "item_quantity")
+@Data
 public class ItemQuantity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_order")

@@ -10,14 +10,15 @@
 	</parent>
 	<groupId>br.com.ufg</groupId>
 	<artifactId>desapega</artifactId>
-	<version>0.0.3-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<name>desapega</name>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<description>Desapega Web Service</description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,10 +60,10 @@
 			<version>1.6.6</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-security</artifactId>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -87,7 +88,15 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>2.0.8</version>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

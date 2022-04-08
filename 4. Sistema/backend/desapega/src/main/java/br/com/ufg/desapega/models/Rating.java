@@ -1,9 +1,12 @@
 package br.com.ufg.desapega.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "rating")
+@Data
 public class Rating {
     @Id
     @Column(name = "id", nullable = false)
@@ -13,7 +16,7 @@ public class Rating {
     @JoinColumn(name = "rated_by")
     private User ratedBy;
 
-    @Column(name = "comment", length = 200)
+    @Column(name = "comment", length = 400)
     private String comment;
 
     @Column(name = "rating_value", nullable = false)

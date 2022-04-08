@@ -1,6 +1,6 @@
 package br.com.ufg.desapega.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.LinkedHashSet;
@@ -8,7 +8,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = "\"user\"")
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @Column(name = "email", nullable = false, length = 50)
@@ -17,10 +21,10 @@ public class User {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
-    @Column(name = "password", nullable = false, length = 50)
+    @Column(name = "password", nullable = false, length = 300)
     private String password;
 
-    @Column(name = "photo", length = 100)
+    @Column(name = "photo", length = 300)
     private String photo;
 
     @OneToMany(mappedBy = "seller")
